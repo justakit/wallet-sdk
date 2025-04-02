@@ -620,11 +620,11 @@ previewData = Display.resolveCredentialOffer(issuanceInteraction.issuerMetadata(
 previewData = DisplayResolveCredentialOffer(issuanceInteraction.issuerMetadata(),issuanceInteraction.offeredCredentialsTypes(), "locale" )
 ```
 
-Note: If the locale is empty, then SDK will default to `en-US`. 
+Note: If the locale is empty, then SDK will default to `en-US`.
 
 #### IssuerDisplay
 
-The `IssuerDisplay` object contains display information for the issuer. 
+The `IssuerDisplay` object contains display information for the issuer.
 
 The methods on a `IssuerDisplay` are:
 
@@ -637,7 +637,7 @@ The methods on a `IssuerDisplay` are:
 
 ##### CredentialDisplays
 
-The `CredentialDisplays` object contains display information for a credential type. Check the `credentialDisplaysLength()` 
+The `CredentialDisplays` object contains display information for a credential type. Check the `credentialDisplaysLength()`
 method on the returned object to find number of credential as part of issuance flow and use `credentialDisplayAtIndex(index)`
 to get the credential display object.
 
@@ -759,7 +759,7 @@ val interaction = IssuerInitiatedInteraction(interactionArgs, interactionOpts) /
 // It's a good idea to check the issuer's capabilities first
 if (!interaction.preAuthorizedCodeGrantTypeSupported()) {
     // This code example isn't applicable. See the authorization code flow example instead.
-    
+
     return
 }
 
@@ -783,10 +783,10 @@ val ackTkn = interaction.acknowledgment().serialize()
 val ack = Acknowledgment(ackTkn)
 
 // Additional Interactions are recorded as part of the wallet’s activity history which are OPTIONAL.
-// Upon the conclusion of issuance or presentation flows, the wallet will send a modified acknowledgment request to the downstream project. 
+// Upon the conclusion of issuance or presentation flows, the wallet will send a modified acknowledgment request to the downstream project.
 
 ack.setInteractionDetails({"userID": "123456"}) //SetInteractionDetails extends acknowledgment request to record additional interactions as part of the wallet’s activity history. (Optional)
-    
+
 ack.success() // user accepts the credential
 ack.reject() // user rejects the credential
 
@@ -823,7 +823,7 @@ let interaction = Openid4ciNewIssuerInitiatedInteraction(interactionArgs, intera
 // It's a good idea to check the issuer's capabilities first
 if !interaction.preAuthorizedCodeGrantTypeSupported() {
     // This code example isn't applicable. See the authorization code flow example instead.
-    
+
     return
 }
 
@@ -880,7 +880,7 @@ val interaction = IssuerInitiatedInteraction(interactionArgs, interactionOpts) /
 // It's a good idea to check the issuer's capabilities first
 if (!interaction.authorizationCodeGrantTypeSupported()) {
     // This code example isn't applicable. See the pre-authorized code flow example instead.
-    
+
     return
 }
 
@@ -937,7 +937,7 @@ let interaction = Openid4ciNewIssuerInitiatedInteraction(interactionArgs, intera
 // It's a good idea to check the issuer's capabilities first
 if !interaction.authorizationCodeGrantTypeSupported() {
     // This code example isn't applicable. See the authorization code flow example instead.
-    
+
     return
 }
 
@@ -1285,7 +1285,7 @@ let opts = DisplayNewOpts().setPreferredLocale("en-us")
 let displayData = DisplayResolve(vcArray, "Issuer_URI_Goes_Here", opts, &error)
 ```
 
-## Credential Display with locale API 
+## Credential Display with locale API
 
 After completing the `RequestCredential` step of the OpenID4CI flow, you will have your issued Verifiable Credential
 objects. These objects contain the data needed for various wallet operations, but they don't tell you how you can
@@ -1298,6 +1298,8 @@ store the issuer URI somewhere in persistent storage after going through the Ope
 `display.resolveCredential` function later if/when you need to refresh your display data based on the latest display information
 from the issuer. Note that if the issuer uses signed metadata, then you'll need to also pass a DID resolver into
 the `display.resolveCredential` function. See the [Options](#options) section for more information.
+
+Alternatively, use `display.resolveCredentialV2`, which offers enhanced flexibility by allowing you to specify a `configID` for each credential.
 
 
 ### Options
@@ -1575,7 +1577,7 @@ val verifierLogoURI = verifierDisplayData.logoURI()
 val verifierPurpose = verifierDisplayData.purpose()
 
 // Use this code to display the list of VCs to select which of them to send.
-val matchedRequirements = inquirer.getSubmissionRequirements(query, savedCredentials) 
+val matchedRequirements = inquirer.getSubmissionRequirements(query, savedCredentials)
 val matchedRequirement = matchedRequirements.atIndex(0) // Usually we will have one requirement
 val requirementDesc = matchedRequirement.descriptorAtIndex(0) // Usually requirement will contain one descriptor
 val selectedVCs = CredentialsArray()
@@ -1650,7 +1652,7 @@ let verifierName = verifierDisplayData.name(),
 let verifierPurpose = verifierDisplayData.purpose()
 
 // Use this code to display the list of VCs to select which of them to send.
-let matchedRequirements = inquirer.getSubmissionRequirements(query, savedCredentials) 
+let matchedRequirements = inquirer.getSubmissionRequirements(query, savedCredentials)
 let matchedRequirement = matchedRequirements.atIndex(0) // Usually we will have one requirement
 let requirementDesc = matchedRequirement.descriptorAtIndex(0) // Usually requirement will contain one descriptor
 let selectedVCs = VerifiableCredentialsArray()
@@ -1661,7 +1663,7 @@ let credentials = interaction.presentCredential(selectedVCs)
 
 try interaction.presentCredentialOpts(
     selectedVCs,
-    opts: Openid4vpNewPresentCredentialOpts()?.setInteractionDetails({"userId": "123456"}))     
+    opts: Openid4vpNewPresentCredentialOpts()?.setInteractionDetails({"userId": "123456"}))
  )
 
 // To force a specific credential to be presented, even if it doesn't match all
@@ -1705,7 +1707,7 @@ if (requirements.len() == 1L && requirements.atIndex(0).rule() == "all" && requi
             // descriptor.name() and descriptor.purpose() can be used to show the error message.
         }
     }
-    
+
     var credentials = interaction.presentCredential(selectedCredentials)
 }
 ```
@@ -1807,7 +1809,7 @@ if (requirements.len() == 1L &&
 ```
 
 ###### Example 5: single submission requirement, nestedRequirement not empty.
-The verifier provides two options for the user to choose from. 
+The verifier provides two options for the user to choose from.
 * Option 1: Present a Resident Permit.
 * Option 2: Present a Driver's Licence <b>AND</b> Bank Account Information.
 
@@ -1840,7 +1842,7 @@ if (requirements.len() == 1L &&
             }
         }
     }
-    
+
     var credentials = interaction.presentCredential(selectedCredentials)
 }
 ```
@@ -1872,7 +1874,7 @@ val scope = interaction.customScope()
 
 try interaction.presentCredentialOpts(
     selectedCreds,
-    opts: Openid4vpNewPresentCredentialOpts()?.addScopeClaim(scope.atIndex(0), claimJSON:#"{"email":"test@example.com"}"#)     
+    opts: Openid4vpNewPresentCredentialOpts()?.addScopeClaim(scope.atIndex(0), claimJSON:#"{"email":"test@example.com"}"#)
 )
 ```
 
@@ -1913,7 +1915,7 @@ config.evaluateIssuanceURL = evaluateIssuanceURL
 val evaluationResult = Registry(config).evaluateIssuance(issuanceRequest)
 
 // check if the txn is allowed
-evaluationResult!.allowed 
+evaluationResult!.allowed
 
 // Get the requested attestations
 for (rInd in 0 until evaluationResult.requestedAttestationLength() ) {
@@ -1946,7 +1948,7 @@ config.evaluateIssuanceURL = evaluateIssuanceURL
 let evaluationResult = try TrustregistryRegistry(config)!.evaluateIssuance(issuanceRequest)
 
 // check if the txn is allowed
-evaluationResult!.allowed 
+evaluationResult!.allowed
 
 // Get the requested attestations
 for rInd in 0..<evaluationResult!.requestedAttestationLength() {
@@ -2072,7 +2074,7 @@ val attestationVC = attestClient.getAttestationVC(
 				"version": "1.0"
 			},
 			"compliance": {
-				"type": "fra"				
+				"type": "fra"
 			}
 		}""",
 )
@@ -2144,7 +2146,7 @@ Example metrics event:
 Note: performance numbers given below are illustrative only and are not intended to be representative of real-world performance.
 ```
                                                      Dashed line indicates event duration in timeline, towards the right is further ahead in time - not to scale
-                                
+
  Request credential(s) from issuer (parent event) --------------------------------------------------------- (5.14s)
  Fetch OpenID config (GET)                (event)     ----(2.92ms)
  Fetch token (POST)                       (event)             ----(6.37ms)

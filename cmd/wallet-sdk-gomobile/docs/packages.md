@@ -70,7 +70,7 @@ This package contains interface definitions and types that are used in multiple 
 <td> Go Source Code </td> <td> Java (as called from Kotlin) </td> <td> Obj-C (as called from Swift) </td>
 </tr>
 <tr>
-<td> 
+<td>
 
 ```
 package api
@@ -110,7 +110,7 @@ ApiCredentialReader
 <td> Go Source Code </td> <td> Java (as called from Kotlin) </td> <td> Obj-C (as called from Swift) </td>
 </tr>
 <tr>
-<td> 
+<td>
 
 ```
 package credential
@@ -155,7 +155,7 @@ inquirer.query(...)
 <td> Go Source Code </td> <td> Java (as called from Kotlin) </td> <td> Obj-C (as called from Swift) </td>
 </tr>
 <tr>
-<td> 
+<td>
 
 ```
 package did
@@ -203,7 +203,7 @@ DidNewResolver()
 <td> Go Source Code </td> <td> Java (as called from Kotlin) </td> <td> Obj-C (as called from Swift) </td>
 </tr>
 <tr>
-<td> 
+<td>
 
 ```
 package credential
@@ -281,7 +281,7 @@ CredentialNewStatusVerifier(...)
 <td> Go Source Code </td> <td> Java (as called from Kotlin) </td> <td> Obj-C (as called from Swift) </td>
 </tr>
 <tr>
-<td> 
+<td>
 
 ```
 package localkms
@@ -320,7 +320,7 @@ LocalkmsNewKMS(...)
 <td> Go Source Code </td> <td> Java (as called from Kotlin) </td> <td> Obj-C (as called from Swift) </td>
 </tr>
 <tr>
-<td> 
+<td>
 
 ```
 package openid4ci
@@ -359,7 +359,7 @@ Openid4ciNewInteraction(...)
 <td> Go Source Code </td> <td> Java (as called from Kotlin) </td> <td> Obj-C (as called from Swift) </td>
 </tr>
 <tr>
-<td> 
+<td>
 
 ```
 package openid4vp

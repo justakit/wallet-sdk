@@ -46,6 +46,9 @@ type headerInjectionRoundTripper struct {
 	additionalHeaders []api.Header
 }
 
+// RoundTrip implements the http.RoundTripper interface. It injects additional headers
+// from 'additionalHeaders' into the request before sending it. This allows custom headers
+// to be added dynamically to the request during the HTTP round-trip process.
 func (h *headerInjectionRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
 	// Per the docs for the http.RoundTripper RoundTrip method, a RoundTripper should not modify the request, so we
 	// clone the request first and then inject the headers into the cloned request.

@@ -42,6 +42,11 @@ func Resolve(vcs *verifiable.CredentialsArray, issuerURI string, opts *Opts) (*D
 	return &Data{resolvedDisplayData: resolvedDisplayData}, nil
 }
 
+// ResolveCredential resolves display information for issued credentials based on an issuer's metadata,
+// which is fetched using the issuer's (base) URI.
+// The Credentials in the returned Resolved object correspond to the VCs passed in and are in the
+// same order.
+// This method requires one or more VCs and the issuer's base URI.
 func ResolveCredential(credentialsArray *verifiable.CredentialsArray, issuerURI string, opts *Opts) (*Resolved, error) {
 	goAPIOpts, err := generateGoAPIOpts(credentialsArray, issuerURI, opts)
 	if err != nil {
@@ -56,6 +61,10 @@ func ResolveCredential(credentialsArray *verifiable.CredentialsArray, issuerURI 
 	return &Resolved{resolvedDisplayData: resolvedDisplayData}, nil
 }
 
+// ResolveCredentialV2 is similar to ResolveCredential, but it uses CredentialsArrayV2.
+// This version allows specifying a configID for each credential, offering more flexibility.
+// The lengths of the 'credentials' and 'configIDs' arrays in 'credentialsArray' must be equal.
+// This ensures that each credential has a corresponding configID, preventing mismatches.
 func ResolveCredentialV2(
 	credentialsArray *verifiable.CredentialsArrayV2,
 	issuerURI string,
